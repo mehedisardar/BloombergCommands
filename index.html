@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloomberg Terminal Shortcuts for Fixed Income</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -60px;
+            transition: background-color 0.3s ease;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+        .tooltip.copied .tooltiptext {
+            background-color: #4CAF50; /* Green */
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bloomberg Terminal Shortcuts for Fixed Income</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Command</th>
+                <th>Function</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><div class="tooltip"><code>ALLQ</code><span class="tooltiptext">Click to copy</span></div></td>
+                <td>All quotes per instrument (TNP / FMPF)</td>
+            </tr>
+            <tr>
+                <td><div class="tooltip"><code>GDCO345</code><span class="tooltiptext">Click to copy</span></div></td>
+                <td>Bonds via FMPF broker code AXEM</td>
+            </tr>
+            <tr>
+                <td><div class="tooltip"><code>BXT/SXT</code><span class="tooltiptext">Click to copy</span></div></td>
+                <td>Voice Buy Ticket / Voice Sell Ticket (VCON); Also possible to compare price/yield calculations</td>
+            </tr>
+            <tr>
+                <td><div class="tooltip"><code>BBTI</code><span class="tooltiptext">Click to copy</span></div></td>
+                <td>IRS</td>
+            </tr>
+            <tr>
+                <td><div class="tooltip"><code>FAXT BETA</code><span class="tooltiptext">Click to copy</span></div></td>
+                <td>Switch to BETA environment</td>
+            </tr>
+            <tr>
+                <td><div class="tooltip"><code>IAMX</code><span class="tooltiptext">Click to copy</span></div></td>
+                <td>Info about yourself (e.g., UUID)</td>
+            </tr>
+            <tr>
+                <td><div class="tooltip"><code>TSOX</code><span class="tooltiptext">Click to copy</span></div></td>
+                <td>Ticket staging area</td>
+            </tr>
+            <tr>
+                <td><div class="tooltip"><code>FIT</code><span class="tooltiptext">Click to copy</span></div></td>
+                <td>Fixed Income trading: can do switch trading from this page</td>
+            </tr>
+            <tr>
+                <td><div class="tooltip"><code>DFIT</code><span class="tooltiptext">Click to copy</span></div></td>
+                <td>Documentation / Specs download</td>
+            </tr>
+            <tr>
+                <td><div class="tooltip"><code>DES</code><span class="tooltiptext">Click to copy</span></div></td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td><div class="tooltip"><code>VCAD</code><span class="tooltiptext">Click to copy</span></div></td>
+                <td>Custom field configuration</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tooltips = document.querySelectorAll('.tooltip');
+            tooltips.forEach(function (tooltip) {
+                tooltip.addEventListener('click', function () {
+                    const commandText = this.querySelector('code').innerText;
+                    const tooltipText = this.querySelector('.tooltiptext');
+                    navigator.clipboard.writeText(commandText).then(() => {
+                        console.log('Command copied to clipboard');
+                        tooltipText.textContent = 'Copied!';
+                        tooltip.classList.add('copied');
+                        setTimeout(() => {
+                            tooltipText.textContent = 'Click to copy';
+                            tooltip.classList.remove('copied');
+                        }, 2000); // Revert after 2 seconds
+                    }, (err) => {
+                        console.error('Could not copy text: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
