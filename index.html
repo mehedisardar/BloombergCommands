@@ -48,62 +48,31 @@
             background-color: #4CAF50; /* Green */
             visibility: visible;
         }
+        .language-selector {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>Bloomberg Terminal Shortcuts for Fixed Income</h1>
+    <div class="language-selector">
+        <label for="language">Choose a language:</label>
+        <select id="language" name="language">
+            <option value="en">English</option>
+            <option value="it">Italiano</option>
+            <option value="ro">Română</option>
+            <option value="es">Español</option>
+        </select>
+    </div>
+    <h1 id="title">Bloomberg Terminal Shortcuts for Fixed Income</h1>
     <table>
         <thead>
             <tr>
-                <th>Command</th>
-                <th>Function</th>
+                <th id="th-command">Command</th>
+                <th id="th-function">Function</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td><div class="tooltip"><code>ALLQ</code><span class="tooltiptext">Click to copy</span></div></td>
-                <td>All quotes per instrument (TNP / FMPF)</td>
-            </tr>
-            <tr>
-                <td><div class="tooltip"><code>GDCO345</code><span class="tooltiptext">Click to copy</span></div></td>
-                <td>Bonds via FMPF broker code AXEM</td>
-            </tr>
-            <tr>
-                <td><div class="tooltip"><code>BXT/SXT</code><span class="tooltiptext">Click to copy</span></div></td>
-                <td>Voice Buy Ticket / Voice Sell Ticket (VCON); Also possible to compare price/yield calculations</td>
-            </tr>
-            <tr>
-                <td><div class="tooltip"><code>BBTI</code><span class="tooltiptext">Click to copy</span></div></td>
-                <td>IRS</td>
-            </tr>
-            <tr>
-                <td><div class="tooltip"><code>FAXT BETA</code><span class="tooltiptext">Click to copy</span></div></td>
-                <td>Switch to BETA environment</td>
-            </tr>
-            <tr>
-                <td><div class="tooltip"><code>IAMX</code><span class="tooltiptext">Click to copy</span></div></td>
-                <td>Info about yourself (e.g., UUID)</td>
-            </tr>
-            <tr>
-                <td><div class="tooltip"><code>TSOX</code><span class="tooltiptext">Click to copy</span></div></td>
-                <td>Ticket staging area</td>
-            </tr>
-            <tr>
-                <td><div class="tooltip"><code>FIT</code><span class="tooltiptext">Click to copy</span></div></td>
-                <td>Fixed Income trading: can do switch trading from this page</td>
-            </tr>
-            <tr>
-                <td><div class="tooltip"><code>DFIT</code><span class="tooltiptext">Click to copy</span></div></td>
-                <td>Documentation / Specs download</td>
-            </tr>
-            <tr>
-                <td><div class="tooltip"><code>DES</code><span class="tooltiptext">Click to copy</span></div></td>
-                <td>Description</td>
-            </tr>
-            <tr>
-                <td><div class="tooltip"><code>VCAD</code><span class="tooltiptext">Click to copy</span></div></td>
-                <td>Custom field configuration</td>
-            </tr>
+        <tbody id="table-body">
+            <!-- Table rows will be inserted here dynamically -->
         </tbody>
     </table>
     <script>
@@ -126,6 +95,126 @@
                     });
                 });
             });
+
+            // Language selection handling
+            const languageSelect = document.getElementById('language');
+            languageSelect.addEventListener('change', updateLanguage);
+
+            const languageData = {
+                en: {
+                    title: "Bloomberg Terminal Shortcuts for Fixed Income",
+                    columns: ["Command", "Function"],
+                    rows: [
+                        ["ALLQ", "All quotes per instrument (TNP / FMPF)"],
+                        ["GDCO345", "Bonds via FMPF broker code AXEM"],
+                        ["BXT/SXT", "Voice Buy Ticket / Voice Sell Ticket (VCON); Also possible to compare price/yield calculations"],
+                        ["BBTI", "IRS"],
+                        ["FAXT BETA", "Switch to BETA environment"],
+                        ["IAMX", "Info about yourself (e.g., UUID)"],
+                        ["TSOX", "Ticket staging area"],
+                        ["FIT", "Fixed Income trading: can do switch trading from this page"],
+                        ["DFIT", "Documentation / Specs download"],
+                        ["DES", "Description"],
+                        ["VCAD", "Custom field configuration"]
+                    ]
+                },
+                it: {
+                    title: "Scorciatoie di Bloomberg Terminal per il reddito fisso",
+                    columns: ["Comando", "Funzione"],
+                    rows: [
+                        ["ALLQ", "Tutte le quotazioni per strumento (TNP / FMPF)"],
+                        ["GDCO345", "Obbligazioni tramite codice broker FMPF AXEM"],
+                        ["BXT/SXT", "Biglietto d'acquisto voce / Biglietto di vendita voce (VCON); È anche possibile confrontare i calcoli di prezzo/rendimento"],
+                        ["BBTI", "IRS"],
+                        ["FAXT BETA", "Passa all'ambiente BETA"],
+                        ["IAMX", "Informazioni su di te (es. UUID)"],
+                        ["TSOX", "Area di staging del ticket"],
+                        ["FIT", "Trading di reddito fisso: è possibile effettuare trading di scambio da questa pagina"],
+                        ["DFIT", "Download della documentazione / Specifiche"],
+                        ["DES", "Descrizione"],
+                        ["VCAD", "Configurazione di campi personalizzati"]
+                    ]
+                },
+                ro: {
+                    title: "Scurtături Bloomberg Terminal pentru venituri fixe",
+                    columns: ["Comandă", "Funcție"],
+                    rows: [
+                        ["ALLQ", "Toate cotațiile pe instrument (TNP / FMPF)"],
+                        ["GDCO345", "Obligațiuni prin codul broker FMPF AXEM"],
+                        ["BXT/SXT", "Tichet de cumpărare vocală / Tichet de vânzare vocală (VCON); De asemenea, este posibil să comparați calculele de preț/randament"],
+                        ["BBTI", "IRS"],
+                        ["FAXT BETA", "Schimbă la mediul BETA"],
+                        ["IAMX", "Informații despre tine (de exemplu, UUID)"],
+                        ["TSOX", "Zona de pregătire a tichetelor"],
+                        ["FIT", "Tranzacționare venituri fixe: se poate face tranzacționare prin schimb de pe această pagină"],
+                        ["DFIT", "Descărcare documentație / Specificații"],
+                        ["DES", "Descriere"],
+                        ["VCAD", "Configurare câmp personalizat"]
+                    ]
+                },
+                es: {
+                    title: "Atajos de Bloomberg Terminal para Renta Fija",
+                    columns: ["Comando", "Función"],
+                    rows: [
+                        ["ALLQ", "Todas las cotizaciones por instrumento (TNP / FMPF)"],
+                        ["GDCO345", "Bonos a través del código de corredor FMPF AXEM"],
+                        ["BXT/SXT", "Ticket de Compra de Voz / Ticket de Venta de Voz (VCON); También es posible comparar cálculos de precio/rendimiento"],
+                        ["BBTI", "IRS"],
+                        ["FAXT BETA", "Cambiar al entorno BETA"],
+                        ["IAMX", "Información sobre ti mismo (por ejemplo, UUID)"],
+                        ["TSOX", "Área de preparación de tickets"],
+                        ["FIT", "Comercio de renta fija: se puede hacer comercio de intercambio desde esta página"],
+                        ["DFIT", "Descarga de documentación / Especificaciones"],
+                        ["DES", "Descripción"],
+                        ["VCAD", "Configuración de campo personalizado"]
+                    ]
+                }
+            };
+
+            function updateLanguage() {
+                const lang = languageSelect.value;
+                const data = languageData[lang];
+
+                document.getElementById('title').innerText = data.title;
+                document.getElementById('th-command').innerText = data.columns[0];
+                document.getElementById('th-function').innerText = data.columns[1];
+
+                const tableBody = document.getElementById('table-body');
+                tableBody.innerHTML = ''; // Clear existing table rows
+
+                data.rows.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td><div class="tooltip"><code>${row[0]}</code><span class="tooltiptext">Click to copy</span></div></td><td>${row[1]}</td>`;
+                    tableBody.appendChild(tr);
+                });
+
+                // Re-initialize tooltips since new elements have been added to the DOM
+                initializeTooltips();
+            }
+
+            function initializeTooltips() {
+                const tooltips = document.querySelectorAll('.tooltip');
+                tooltips.forEach(function (tooltip) {
+                    tooltip.addEventListener('click', function () {
+                        const commandText = this.querySelector('code').innerText;
+                        const tooltipText = this.querySelector('.tooltiptext');
+                        navigator.clipboard.writeText(commandText).then(() => {
+                            console.log('Command copied to clipboard');
+                            tooltipText.textContent = 'Copied!';
+                            tooltip.classList.add('copied');
+                            setTimeout(() => {
+                                tooltipText.textContent = 'Click to copy';
+                                tooltip.classList.remove('copied');
+                            }, 2000); // Revert after 2 seconds
+                        }, (err) => {
+                            console.error('Could not copy text: ', err);
+                        });
+                    });
+                });
+            }
+
+            // Initialize the page with the default language
+            updateLanguage();
         });
     </script>
 </body>
